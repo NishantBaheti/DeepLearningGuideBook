@@ -1,0 +1,308 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>layer &mdash; Explore Neural Networks 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Explore Neural Networks
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">ExploreNN.github.io</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Explore Neural Networks</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>layer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for layer</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Undestanding feed forward.</span>
+
+<span class="sd">* Shapes </span>
+<span class="sd">    </span>
+<span class="sd">    * According to Andrew Ng&#39;s course :</span>
+
+<span class="sd">        * inputs  : ( m examples, number of input features)</span>
+<span class="sd">        * weights : ( number of nodes in previous layer or input features, number of nodes in current layer )</span>
+<span class="sd">        * biases  : ( number of nodes in current layer , 1 )</span>
+
+<span class="sd">        - output = weights.T * inputs + biases </span>
+<span class="sd">        - (n[l],m) = (n[l],n[l-1]) * (n[l-1],m) + (n[l],1)</span>
+
+<span class="sd">    * According to Sentdex&#39;s example :</span>
+
+<span class="sd">        * inputs  : ( m examples, number of input features )</span>
+<span class="sd">        * weights : ( number of nodes in previous layer or input features, number of nodes in current layer )</span>
+<span class="sd">        * biases  : ( 1, number of nodes in current layer )</span>
+
+<span class="sd">        - output = weights.T * inputs + biases</span>
+<span class="sd">        - (n[l],m) = (n[l],n[l-1]) * (n[l-1],m) + (1 , n[l])</span>
+
+<span class="sd">==========================================================================================================</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># everytime random result will be same based on seed</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">2.7</span><span class="p">,</span><span class="mf">3.3</span><span class="p">,</span><span class="o">-</span><span class="mf">0.8</span><span class="p">]</span>
+    <span class="p">])</span>  <span class="c1"># (3,4)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Layer_Dense"><a class="viewcode-back" href="../layer.html#layer.Layer_Dense">[docs]</a><span class="k">class</span> <span class="nc">Layer_Dense</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Layer Module</span>
+<span class="sd">    </span>
+<span class="sd">    It is recommended that input data X is scaled(data scaling operations)</span>
+<span class="sd">    so that data is normalized but meaning of the data remains same.</span>
+<span class="sd">    </span>
+<span class="sd">    Notes:</span>
+<span class="sd">       How do we actually initialize a layer for a New Neural Network?</span>
+<span class="sd">        </span>
+<span class="sd">        1. initialize weights with small random values</span>
+<span class="sd">            why? because according to Andrew Ng&#39;s explanation if all the weights/params are</span>
+<span class="sd">            initialized by zero or same value then all the hidden units will be symmetric with identical nodes.</span>
+<span class="sd">            </span>
+<span class="sd">            With identical nodes there will be no learning/ decision making. because all the decisions</span>
+<span class="sd">            shares same value.</span>
+<span class="sd">            </span>
+<span class="sd">            If all the nodes will have zero values(weights are zero , multiplication with weights will also be </span>
+<span class="sd">            zero) and propogation result wont be a conclusive one(dead network).</span>
+
+<span class="sd">            shape of weights(theoratically) : (number of neurons, number of inputs)</span>
+<span class="sd">                                                but we have to do transpose operation everytime</span>
+<span class="sd">            shape of weights(for code) : (number of inputs, number of neurons)</span>
+
+<span class="sd">            number of inputs = number of neurons in previous layer or input layer features</span>
+<span class="sd">            </span>
+<span class="sd">        2. initialize of bias can be zero. as randomness is already introduced by weights.</span>
+<span class="sd">            But for smaller Neural Network it is advised to not to initialize with zero.</span>
+
+<span class="sd">            </span>
+<span class="sd">            shape of biases (sentdex) : (1, number of neurons)</span>
+<span class="sd">            shape of biases (Andrew Ng) : (number of neurons,1) </span>
+
+<span class="sd">            don&#39;t really know which one is more correct</span>
+
+<span class="sd">            In the both are going to broadcasted to the base result </span>
+<span class="sd">            </span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        n_inputs (int) : number of inputs </span>
+<span class="sd">        n_neurons (int) : number of neurons</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n_inputs</span><span class="p">,</span><span class="n">n_neurons</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_inputs</span><span class="p">,</span><span class="n">n_neurons</span><span class="p">)</span> <span class="c1"># multiply by 0.1 to make it small</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">biases</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="n">n_neurons</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Layer_Dense.forward"><a class="viewcode-back" href="../layer.html#layer.Layer_Dense.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;forward propogation calculation</span>
+<span class="sd">        </span>
+<span class="sd">        Method:</span>
+<span class="sd">            output = inputs * weights + biases</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            inputs (numpy.ndarray) : X Input matrix</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">biases</span> </div></div>
+    
+<span class="n">layer1</span> <span class="o">=</span> <span class="n">Layer_Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">layer2</span> <span class="o">=</span> <span class="n">Layer_Dense</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">layer1</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">layer2</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">layer2</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Nishant Baheti.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

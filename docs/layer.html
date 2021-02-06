@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>layer module &mdash; Explore Neural Networks 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="p1_naive_single_neuron module" href="p1_naive_single_neuron.html" />
+    <link rel="prev" title="activation module" href="activation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Explore Neural Networks
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">ExploreNN.github.io</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="activation.html">activation module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="p1_naive_single_neuron.html">p1_naive_single_neuron module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="p2_naive_multiple_neurons.html">p2_naive_multiple_neurons module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="p3_multiple_neurons.html">p3_multiple_neurons module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="p4_batch_multiple_neurons.html">p4_batch_multiple_neurons module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Explore Neural Networks</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">ExploreNN.github.io</a> &raquo;</li>
+        
+      <li>layer module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/layer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-layer">
+<span id="layer-module"></span><h1>layer module<a class="headerlink" href="#module-layer" title="Permalink to this headline">¶</a></h1>
+<p>Undestanding feed forward.</p>
+<ul>
+<li><p>Shapes</p>
+<blockquote>
+<div><ul>
+<li><p>According to Andrew Ng’s course :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>inputs  : ( m examples, number of input features)</p></li>
+<li><p>weights : ( number of nodes in previous layer or input features, number of nodes in current layer )</p></li>
+<li><p>biases  : ( number of nodes in current layer , 1 )</p></li>
+</ul>
+<ul class="simple">
+<li><p>output = weights.T * inputs + biases</p></li>
+<li><p>(n[l],m) = (n[l],n[l-1]) * (n[l-1],m) + (n[l],1)</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>According to Sentdex’s example :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>inputs  : ( m examples, number of input features )</p></li>
+<li><p>weights : ( number of nodes in previous layer or input features, number of nodes in current layer )</p></li>
+<li><p>biases  : ( 1, number of nodes in current layer )</p></li>
+</ul>
+<ul class="simple">
+<li><p>output = weights.T * inputs + biases</p></li>
+<li><p>(n[l],m) = (n[l],n[l-1]) * (n[l-1],m) + (1 , n[l])</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<hr class="docutils" />
+<dl class="py class">
+<dt id="layer.Layer_Dense">
+<em class="property">class </em><code class="sig-prename descclassname">layer.</code><code class="sig-name descname">Layer_Dense</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_inputs</span></em>, <em class="sig-param"><span class="n">n_neurons</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/layer.html#Layer_Dense"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#layer.Layer_Dense" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Layer Module</p>
+<p>It is recommended that input data X is scaled(data scaling operations)
+so that data is normalized but meaning of the data remains same.</p>
+<p class="rubric">Notes</p>
+<p>How do we actually initialize a layer for a New Neural Network?</p>
+<blockquote>
+<div><ol class="arabic">
+<li><dl>
+<dt>initialize weights with small random values</dt><dd><p>why? because according to Andrew Ng’s explanation if all the weights/params are
+initialized by zero or same value then all the hidden units will be symmetric with identical nodes.</p>
+<p>With identical nodes there will be no learning/ decision making. because all the decisions
+shares same value.</p>
+<p>If all the nodes will have zero values(weights are zero , multiplication with weights will also be
+zero) and propogation result wont be a conclusive one(dead network).</p>
+<dl class="simple">
+<dt>shape of weights(theoratically)<span class="classifier">(number of neurons, number of inputs)</span></dt><dd><p>but we have to do transpose operation everytime</p>
+</dd>
+</dl>
+<p>shape of weights(for code) : (number of inputs, number of neurons)</p>
+<p>number of inputs = number of neurons in previous layer or input layer features</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>initialize of bias can be zero. as randomness is already introduced by weights.</dt><dd><p>But for smaller Neural Network it is advised to not to initialize with zero.</p>
+<p>shape of biases (sentdex) : (1, number of neurons)
+shape of biases (Andrew Ng) : (number of neurons,1)</p>
+<p>don’t really know which one is more correct</p>
+<p>In the both are going to broadcasted to the base result</p>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+<dl class="py attribute">
+<dt id="layer.Layer_Dense.n_inputs">
+<code class="sig-name descname">n_inputs</code><a class="headerlink" href="#layer.Layer_Dense.n_inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="layer.Layer_Dense.n_neurons">
+<code class="sig-name descname">n_neurons</code><a class="headerlink" href="#layer.Layer_Dense.n_neurons" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of neurons</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="layer.Layer_Dense.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/layer.html#Layer_Dense.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#layer.Layer_Dense.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>forward propogation calculation</p>
+<dl class="simple">
+<dt>Method:</dt><dd><p>output = inputs * weights + biases</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>inputs</strong> (<em>numpy.ndarray</em>) – X Input matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="p1_naive_single_neuron.html" class="btn btn-neutral float-right" title="p1_naive_single_neuron module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="activation.html" class="btn btn-neutral float-left" title="activation module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Nishant Baheti.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
