@@ -36,7 +36,7 @@ X = np.array([
 
 print(X.shape)
 
-class Layer_Dense():
+class Layer_Dense:
     """Layer Module
     
     It is recommended that input data X is scaled(data scaling operations)
@@ -97,13 +97,55 @@ class Layer_Dense():
         """
         self.output = np.dot(inputs,self.weights)+self.biases 
     
+
+class Activation_ReLU:
+    """ReLU Activation Fx
+
+    Method:
+            
+        f(x) = 0  if x <= 0
+        f(x) = x  if x > 0
+    
+    """
+    def __init__(self):
+        """
+        """
+        self.output = None
+
+    def forward(self, inputs):
+        """Apply ReLU to input
+        
+        Args:
+            inputs (numpy.ndarray) : input matrix
+        
+        """
+        self.output = np.maximum(0,inputs)
+
+
+class Activation_Softmax:
+    """
+    """
+    def forward(self,inputs):
+        """
+        """
+        exp_values = np.exp(inputs - np.max(inputs,axis=1,keepdims=True))
+        probabilites = exp_values  / np.sum(exp_values,axis=1,keepdims=True)
+        self.output = probabilites
+
+
 layer1 = Layer_Dense(4,5)
 layer2 = Layer_Dense(5,2)
+activation1 = Activation_ReLU()
+activation2 = Activation_ReLU()
 
 layer1.forward(X)
+activation1.forward(layer1.output)
 
-layer2.forward(layer1.output)
 
-print(layer2.output)
+layer2.forward(activation1.output)
+activation2.forward(layer2.output)
+
+print(activation2.output)
+
 
 

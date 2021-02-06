@@ -16,8 +16,7 @@ Notes:
     5. If there is no activate function then the whole network will be similar to a one linear
         node.
         
-        w.T(w.T *(w.T * x + b) + b) + b ... = output
-
+        w.T(w.T *(w.T * x + b) + b) + b ... = output 
     6. stepwise activation fx 
 
         * non granular 
@@ -41,6 +40,10 @@ Notes:
             so introducing slight non linearity makes it eligible for an
             activation function but also inherently easy and fast calculation 
             than sigmoid.
+    
+    9. Softmax acitvation fx
+
+        * get more info from Andrew's video 
 
 """
 
@@ -89,3 +92,16 @@ def stepwise(x):
             output.append(0)
         else:
             output.append(1)
+
+
+def softmax(x):
+    """
+    """
+    exp_values = np.exp(x)
+
+    norm_values = exp_values  / np.sum(exp_values,axis=1,keepdims=True)
+
+    return norm_values
+
+print(softmax([[4.8,1.21,2.385]]))
+
