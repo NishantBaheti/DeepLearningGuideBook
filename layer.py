@@ -136,7 +136,7 @@ class Activation_Softmax:
 layer1 = Layer_Dense(4,5)
 layer2 = Layer_Dense(5,2)
 activation1 = Activation_ReLU()
-activation2 = Activation_ReLU()
+activation2 = Activation_Softmax()
 
 layer1.forward(X)
 activation1.forward(layer1.output)

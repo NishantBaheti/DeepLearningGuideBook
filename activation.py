@@ -103,5 +103,3 @@ def softmax(x):
 
     return norm_values
 
-print(softmax([[4.8,1.21,2.385]]))
-
