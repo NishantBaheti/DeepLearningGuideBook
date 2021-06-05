@@ -38,7 +38,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="p1_naive_single_neuron module" href="p1_naive_single_neuron.html" />
+    <link rel="next" title="log_e module" href="log_e.html" />
     <link rel="prev" title="activation module" href="activation.html" /> 
 </head>
 
@@ -86,9 +86,10 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">ExploreNN.github.io</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">UnderstandingNN</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="activation.html">activation module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log_e.html">log_e module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="p1_naive_single_neuron.html">p1_naive_single_neuron module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="p2_naive_multiple_neurons.html">p2_naive_multiple_neurons module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="p3_multiple_neurons.html">p3_multiple_neurons module</a></li>
@@ -143,7 +144,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="modules.html">ExploreNN.github.io</a> &raquo;</li>
+          <li><a href="modules.html">UnderstandingNN</a> &raquo;</li>
         
       <li>layer module</li>
     
@@ -174,26 +175,50 @@
 <li><p>According to Andrew Ng’s course :</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>inputs  : ( m examples, number of input features)</p></li>
-<li><p>weights : ( number of nodes in previous layer or input features, number of nodes in current layer )</p></li>
-<li><p>biases  : ( number of nodes in current layer , 1 )</p></li>
+<li><dl class="simple">
+<dt>inputs  :</dt><dd><p>( m examples, number of input features )</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>weights :</dt><dd><p>( number of nodes in previous layer or input features, number of nodes in current layer )</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>biases  :</dt><dd><p>( number of nodes in current layer , 1 )</p>
+</dd>
+</dl>
+</li>
 </ul>
 <ul class="simple">
 <li><p>output = weights.T * inputs + biases</p></li>
-<li><p>(n[l],m) = (n[l],n[l-1]) * (n[l-1],m) + (n[l],1)</p></li>
+<li><p>( n[l] ,m ) = ( n[l] , n[l-1] ) * ( n[l-1] , m ) + ( n[l] , 1 )</p></li>
 </ul>
 </div></blockquote>
 </li>
 <li><p>According to Sentdex’s example :</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>inputs  : ( m examples, number of input features )</p></li>
-<li><p>weights : ( number of nodes in previous layer or input features, number of nodes in current layer )</p></li>
-<li><p>biases  : ( 1, number of nodes in current layer )</p></li>
+<li><dl class="simple">
+<dt>inputs  :</dt><dd><p>( m examples, number of input features )</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>weights :</dt><dd><p>( number of nodes in previous layer or input features, number of nodes in current layer )</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>biases  :</dt><dd><p>( 1, number of nodes in current layer )</p>
+</dd>
+</dl>
+</li>
 </ul>
 <ul class="simple">
 <li><p>output = weights.T * inputs + biases</p></li>
-<li><p>(n[l],m) = (n[l],n[l-1]) * (n[l-1],m) + (1 , n[l])</p></li>
+<li><p>( n[l] , m ) = ( n[l] , n[l-1] ) * ( n[l-1] , m ) + ( 1 , n[l] )</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -209,37 +234,6 @@
 <p>Layer Module</p>
 <p>It is recommended that input data X is scaled(data scaling operations)
 so that data is normalized but meaning of the data remains same.</p>
-<p class="rubric">Notes</p>
-<p>How do we actually initialize a layer for a New Neural Network?</p>
-<blockquote>
-<div><ol class="arabic">
-<li><dl>
-<dt>initialize weights with small random values</dt><dd><p>why? because according to Andrew Ng’s explanation if all the weights/params are
-initialized by zero or same value then all the hidden units will be symmetric with identical nodes.</p>
-<p>With identical nodes there will be no learning/ decision making. because all the decisions
-shares same value.</p>
-<p>If all the nodes will have zero values(weights are zero , multiplication with weights will also be
-zero) and propogation result wont be a conclusive one(dead network).</p>
-<dl class="simple">
-<dt>shape of weights(theoratically)<span class="classifier">(number of neurons, number of inputs)</span></dt><dd><p>but we have to do transpose operation everytime</p>
-</dd>
-</dl>
-<p>shape of weights(for code) : (number of inputs, number of neurons)</p>
-<p>number of inputs = number of neurons in previous layer or input layer features</p>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>initialize of bias can be zero. as randomness is already introduced by weights.</dt><dd><p>But for smaller Neural Network it is advised to not to initialize with zero.</p>
-<p>shape of biases (sentdex) : (1, number of neurons)
-shape of biases (Andrew Ng) : (number of neurons,1)</p>
-<p>don’t really know which one is more correct</p>
-<p>In the both are going to broadcasted to the base result</p>
-</dd>
-</dl>
-</li>
-</ol>
-</div></blockquote>
 <dl class="py attribute">
 <dt id="layer.Layer_Dense.n_inputs">
 <code class="sig-name descname">n_inputs</code><a class="headerlink" href="#layer.Layer_Dense.n_inputs" title="Permalink to this definition">¶</a></dt>
@@ -262,17 +256,156 @@ shape of biases (Andrew Ng) : (number of neurons,1)</p>
 </dl>
 </dd></dl>
 
+<p class="rubric">Notes</p>
+<p>How do we actually initialize a layer for a New Neural Network?</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>initialize weights with small random values</p>
+<blockquote>
+<div><p>why? because according to Andrew Ng’s explanation if all the weights/params are
+initialized by zero or same value then all the hidden units will be symmetric with identical nodes.</p>
+<p>With identical nodes there will be no learning/ decision making. because all the decisions
+shares same value.</p>
+<p>If all the nodes will have zero values(weights are zero , multiplication with weights will also be
+zero) and propogation result wont be a conclusive one(dead network).</p>
+<dl class="simple">
+<dt>shape of weights(theoratically) :</dt><dd><p>(number of neurons, number of inputs)
+but we have to do transpose operation everytime</p>
+</dd>
+<dt>shape of weights(for code) :</dt><dd><p>(number of inputs, number of neurons)</p>
+</dd>
+<dt>number of inputs :</dt><dd><p>number of neurons in previous layer or input layer features</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>initialize of bias can be zero.</p>
+<blockquote>
+<div><p>as randomness is already introduced by weights.
+But for smaller Neural Network it is advised to not to initialize with zero.</p>
+<dl class="simple">
+<dt>shape of biases (sentdex) :</dt><dd><p>(1, number of neurons)</p>
+</dd>
+<dt>shape of biases (Andrew Ng) :</dt><dd><p>(number of neurons,1)</p>
+</dd>
+</dl>
+<p>don’t really know which one is more correct
+In the end both are going to be broadcasted to the base result</p>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+<dl class="py method">
+<dt id="layer.Layer_Dense.backward">
+<code class="sig-name descname">backward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dvalues</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/layer.html#Layer_Dense.backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#layer.Layer_Dense.backward" title="Permalink to this definition">¶</a></dt>
+<dd><p>backward pass</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dvalues</strong> (<em>numpy.ndarray</em>) – gradient value from the next layer to update this layers parameters</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Based on Andrew Ng’s-</p>
+<blockquote>
+<div><dl class="simple">
+<dt>input to this layer</dt><dd><p>(for backward propogation)</p>
+</dd>
+<dt>dZ’ <cite>dvalues</cite> = A - y</dt><dd><p>(basically difference or inaccuracy or loss on target value)</p>
+</dd>
+<dt>param for this layer</dt><dd><p>(this function starts working from here)</p>
+</dd>
+</dl>
+<p>dW = dZ * A.T
+dB = sum(dZ)</p>
+<dl class="simple">
+<dt>input for next layer</dt><dd><p>(in backward propogation)</p>
+</dd>
+</dl>
+<p>dZ = dZ’ * W.T</p>
+</div></blockquote>
+</dd></dl>
+
 <dl class="py method">
 <dt id="layer.Layer_Dense.forward">
 <code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/layer.html#Layer_Dense.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#layer.Layer_Dense.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>forward propogation calculation</p>
-<dl class="simple">
-<dt>Method:</dt><dd><p>output = inputs * weights + biases</p>
-</dd>
-</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>inputs</strong> (<em>numpy.ndarray</em>) – X Input matrix</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>output = inputs * weights + biases</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="layer.Loss">
+<em class="property">class </em><code class="sig-prename descclassname">layer.</code><code class="sig-name descname">Loss</code><a class="reference internal" href="_modules/layer.html#Loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#layer.Loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Loss Meta class</p>
+<dl class="py method">
+<dt id="layer.Loss.calculate">
+<code class="sig-name descname">calculate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">output</span></em>, <em class="sig-param"><span class="n">y</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/layer.html#Loss.calculate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#layer.Loss.calculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate mean loss</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>)</strong> (<em>y</em>) – output from the layer</p></li>
+<li><p><strong>(</strong><strong>)</strong> – truth value/ target/ expected outcome</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>TODO</p>
+<p class="rubric">References</p>
+<p>None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="layer.Loss.forward">
+<em class="property">abstract </em><code class="sig-name descname">forward</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/layer.html#Loss.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#layer.Loss.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>mandatory method for child class</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="layer.Loss_CategoricalCrossEntropy">
+<em class="property">class </em><code class="sig-prename descclassname">layer.</code><code class="sig-name descname">Loss_CategoricalCrossEntropy</code><a class="reference internal" href="_modules/layer.html#Loss_CategoricalCrossEntropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#layer.Loss_CategoricalCrossEntropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#layer.Loss" title="layer.Loss"><code class="xref py py-class docutils literal notranslate"><span class="pre">layer.Loss</span></code></a></p>
+<p>Categorical Cross entropy loss</p>
+<p class="rubric">Notes</p>
+<p>TODO</p>
+<dl class="py method">
+<dt id="layer.Loss_CategoricalCrossEntropy.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_pred</span></em>, <em class="sig-param"><span class="n">y_true</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/layer.html#Loss_CategoricalCrossEntropy.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#layer.Loss_CategoricalCrossEntropy.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>forward propogation calculation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_pred</strong> (<em>numpy.ndarray</em>) – predictions generated</p></li>
+<li><p><strong>y_true</strong> (<em>numpy.ndarray</em>) – actual values</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<dl class="simple">
+<dt>y_pred_clipped</dt><dd><p>numpy.clip is used to clip the values from min
+and max values like bandpass filter
+min = 1.0 * 10^-7
+max = 1 - 1.0 * 10^-7</p>
+</dd>
+<dt>correct_confidences</dt><dd><p>probabilities for target value that has been
+calculated earlier
+only for categorical variables
+TODO : to write more about this</p>
+</dd>
+<dt>negative_log_Likelihoods</dt><dd><p>TODO</p>
 </dd>
 </dl>
 </dd></dl>
@@ -287,7 +420,7 @@ shape of biases (Andrew Ng) : (number of neurons,1)</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="p1_naive_single_neuron.html" class="btn btn-neutral float-right" title="p1_naive_single_neuron module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="log_e.html" class="btn btn-neutral float-right" title="log_e module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="activation.html" class="btn btn-neutral float-left" title="activation module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
