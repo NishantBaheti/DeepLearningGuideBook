@@ -7,11 +7,11 @@ Welcome to Understanding Neural Networks's documentation!
 =========================================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Contents:
    
-   ann
-   log_e
+   notebooks/ann
+   notebooks/log_e
 
 
 
