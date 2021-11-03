@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('.'))
 # -- Project information -----------------------------------------------------
 
 project = 'Understanding Neural Networks'
-copyright = '2021, Nishant Baheti'
+copyright = 'No Copyright'
 author = 'Nishant Baheti'
 
 # The full version, including alpha/beta/rc tags

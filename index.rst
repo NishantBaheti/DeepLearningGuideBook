@@ -3,14 +3,18 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Understanding Neural Networks's documentation!
-=========================================================
+Understanding Neural Networks
+======================================
 
 .. toctree::
    :maxdepth: 4
    :caption: Contents:
    
-   notebooks/ann
+   notebooks/architecture
+   notebooks/layer
+   notebooks/activationfunc
+   notebooks/loss
+   notebooks/optimizationalgo
    notebooks/log_e
 
 
