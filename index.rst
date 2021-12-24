@@ -18,6 +18,7 @@ Understanding Neural Networks
    notebooks/optimizationalgo
    notebooks/log_e
    notebooks/som
+   notebooks/ML
 
 
 
