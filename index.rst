@@ -18,7 +18,7 @@ Understanding Neural Networks
    notebooks/optimizationalgo
    notebooks/log_e
    notebooks/som
-   :ref:`https://machinelearningexploration.readthedocs.io <Machine Learning Doc>`
+   https://machinelearningexploration.readthedocs.io
 
 
 Indices and tables
