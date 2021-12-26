@@ -13,10 +13,11 @@ Understanding Neural Networks
    notebooks/architecture
    notebooks/layer
    notebooks/activationfunc
-   notebooks/regression_understanding
    notebooks/loss
    notebooks/optimizationalgo
    notebooks/log_e
+   notebooks/regression_understanding
+   notebooks/classification_understanding
    notebooks/som
    https://machinelearningexploration.readthedocs.io
 
