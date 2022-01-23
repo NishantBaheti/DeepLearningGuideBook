@@ -7,7 +7,7 @@ Understanding Neural Networks
 ======================================
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 8
    :caption: Contents:
    
    notebooks/architecture
@@ -20,6 +20,8 @@ Understanding Neural Networks
    notebooks/classification_understanding
    notebooks/som
    https://machinelearningexploration.readthedocs.io
+   https://nlpblog.readthedocs.io
+   https://recommendation-systems.readthedocs.io
 
 
 Indices and tables
