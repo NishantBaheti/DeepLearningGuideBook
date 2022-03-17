@@ -18,6 +18,7 @@ Understanding Neural Networks
    notebooks/log_e
    notebooks/regression_understanding
    notebooks/classification_understanding
+   notebooks/rnn
    notebooks/som
    https://machinelearningexploration.readthedocs.io
    https://nlpblog.readthedocs.io
