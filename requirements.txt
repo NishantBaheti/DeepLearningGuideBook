@@ -1,4 +1,4 @@
-Sphinx==3.4.3
+Sphinx>=3.4.3
 sphinx-rtd-theme==0.5.2
 sphinxcontrib-applehelp==1.0.2
 sphinxcontrib-bibtex==2.3.0
@@ -10,4 +10,4 @@ sphinxcontrib-serializinghtml==1.1.5
 sphinxcontrib-svg2pdfconverter==1.1.1
 webencodings==0.5.1
 sphinx-book-theme>=0.1.6
-nbsphinx==0.8.6
+nbsphinx>=0.8.6
