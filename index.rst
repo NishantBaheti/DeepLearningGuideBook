@@ -19,6 +19,7 @@ Understanding Neural Networks
    notebooks/regression_understanding
    notebooks/classification_understanding
    notebooks/rnn
+   notebooks/autoencoder/basic
    notebooks/som
    https://machinelearningexploration.readthedocs.io
    https://nlpblog.readthedocs.io
