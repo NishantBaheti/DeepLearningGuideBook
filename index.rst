@@ -1,6 +1,6 @@
 .. meta::
-   :description: This is a guide to explore deep learning methods.
-   :keywords: deep learning book
+   :description: Deep Learning Guide Book
+   :keywords: deep learning book, deep learning, tensorflow, pytorch, neural networks, loss function, Artificial Intelligence
    
 .. index:: README
 .. include:: ./README.rst
