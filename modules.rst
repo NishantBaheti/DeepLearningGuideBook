@@ -36,5 +36,5 @@
    :name: Other Docs
 
    https://mlguidebook.com
-   https://nlpblog.readthedocs.io
-   https://recommendation-systems.readthedocs.io
+   https://nlp.mlguidebook.com
+   https://reco.mlguidebook.com
