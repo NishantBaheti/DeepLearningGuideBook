@@ -25,9 +25,9 @@
    :caption: Types
    :name: Types
    
-   notebooks/rnn
+   .. notebooks/rnn
    notebooks/autoencoder/basic
-   notebooks/som
+   .. notebooks/som
 
    
 .. toctree::
