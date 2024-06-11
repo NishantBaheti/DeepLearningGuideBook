@@ -7,6 +7,8 @@
    notebooks/activationfunc
    notebooks/loss
    notebooks/optimizationalgo
+   notebooks/nn_from_scratch
+   notebooks/logistic_regression
 
    
 .. toctree::
