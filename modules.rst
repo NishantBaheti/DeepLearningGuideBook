@@ -7,9 +7,13 @@
    notebooks/activationfunc
    notebooks/loss
    notebooks/optimizationalgo
-   notebooks/nn_from_scratch
-   notebooks/logistic_regression
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Implementation
+
+   notebooks/logistic_regression_from_scratch
+   notebooks/nn_from_scratch
    
 .. toctree::
    :maxdepth: 2
