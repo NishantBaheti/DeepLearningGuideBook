@@ -37,7 +37,7 @@
     :maxdepth: 1
     :caption: Additional Docs
 
-    Reco Guide Book <https://mlguidebook.com>
+    ML Guide Book <https://mlguidebook.com>
     Reco Guide Book <https://reco.mlguidebook.com>
     NLP Guide Book <https://nlp.mlguidebook.com>
     Python Guide Book <https://python.mlguidebook.com>
