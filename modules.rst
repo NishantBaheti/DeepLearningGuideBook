@@ -34,9 +34,12 @@
 
    
 .. toctree::
-   :maxdepth: 2
-   :caption: Other Docs
+    :maxdepth: 1
+    :caption: Additional Docs
 
-   https://mlguidebook.com
-   https://nlp.mlguidebook.com
-   https://reco.mlguidebook.com
+    Reco Guide Book <https://reco.mlguidebook.com>
+    Deep Learning Guide Book <https://dl.mlguidebook.com>
+    NLP Guide Book <https://nlp.mlguidebook.com>
+    Python Guide Book <https://python.mlguidebook.com>
+    mightypy <https://mightypy.readthedocs.io/>
+    graphpkg <https://graphpkg.readthedocs.io/>
