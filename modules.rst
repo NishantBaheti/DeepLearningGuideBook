@@ -15,6 +15,14 @@
    notebooks/logistic_regression_from_scratch
    notebooks/nn_from_scratch
    notebooks/transformers/explore
+
+.. toctree::
+   :maxdepth: 2
+   :caption: pytorch
+
+   notebooks/pytorch/basic
+   notebooks/pytorch/tensor
+   notebooks/pytorch/autograd
    
 .. toctree::
    :maxdepth: 2
