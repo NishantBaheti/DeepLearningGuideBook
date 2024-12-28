@@ -22,7 +22,15 @@ project = 'Deep Learning Guide Book'
 html_show_copyright = False
 html_logo = "logo/dlguidebook_logo.png"
 html_favicon = "logo/dlguidebook_logo.png"
+
 author = 'Nishant Baheti'
+
+# The name for this set of Sphinx documents.  If None, it defaults to
+# "<project> v<release> documentation".
+html_title = "Deep Learning Guide Book"
+
+# A shorter title for the navigation bar.  Default is the same as html_title.
+html_short_title = "DL Guide Book"
 
 # The full version, including alpha/beta/rc tags
 # release = '0.0.1'
@@ -35,15 +43,20 @@ author = 'Nishant Baheti'
 # ones.
 extensions = [
     'nbsphinx',
+    "sphinx.ext.autodoc",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.mathjax",
+    "sphinx.ext.ifconfig",
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
     'sphinx.ext.todo',
-    'sphinx.ext.ifconfig'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+html_static_path = ['_static']
+
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -74,15 +87,3 @@ html_theme_options = {
 # html_theme = 'sphinx_pdj_theme'
 # html_theme_path = [sphinx_pdj_theme.get_html_theme_path()]
 # html_theme = 'furo'
-
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
-
-# The name for this set of Sphinx documents.  If None, it defaults to
-# "<project> v<release> documentation".
-html_title = "Deep Learning Guide Book"
-
-# A shorter title for the navigation bar.  Default is the same as html_title.
-html_short_title = "DL Guide Book"

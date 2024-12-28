@@ -1,7 +1,8 @@
 .. meta::
    :description: Deep Learning Guide Book
-   :keywords: deep learning book, deep learning, tensorflow, pytorch, neural networks, loss function, Artificial Intelligence
+   :keywords: deep learning book, deep learning, tensorflow, pytorch, neural networks, loss function, Artificial Intelligence, Transformers, generative AI, Attention
    
+
 .. index:: README
 .. include:: ./README.rst
 
