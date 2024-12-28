@@ -9,7 +9,9 @@ sphinxcontrib-serializinghtml>=1.1.5
 sphinxcontrib-svg2pdfconverter>=1.1.1
 webencodings>=0.5.1
 piccolo-theme==0.11.0
-# sphinx-book-theme
+# sphinx-book-theme==1.0.1
+# pydata-sphinx-theme
+sphinx-press-theme
 nbsphinx>=0.8.6
 setuptools_scm
-furo
+# furo
