@@ -54,7 +54,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store','_build', '**.ipynb_check
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "press"
+html_theme = "piccolo_theme"
 
 html_theme_options = {
     # "navigation_depth": 2,  # Controls depth of navigation tree
