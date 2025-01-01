@@ -1,15 +1,4 @@
 
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Architecture
-   
-   notebooks/architecture
-   notebooks/layer
-   notebooks/activationfunc
-   notebooks/loss
-   notebooks/optimizationalgo
-
 .. toctree::
    :maxdepth: 2
    :caption: Implementation
@@ -17,6 +6,17 @@
    notebooks/logistic_regression_from_scratch
    notebooks/nn_from_scratch
    notebooks/transformers/explore
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Architecture Components
+
+   notebooks/architecture
+   notebooks/layer
+   notebooks/activationfunc
+   notebooks/loss
+   notebooks/optimizationalgo
+
 
 .. toctree::
    :maxdepth: 2
