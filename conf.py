@@ -20,8 +20,8 @@ sys.path.insert(0, os.path.abspath('.'))
 project = 'Deep Learning Guide Book'
 # copyright = 'No Copyright'
 html_show_copyright = False
-html_logo = "logo/dlguidebook_logo.png"
-html_favicon = "logo/dlguidebook_logo.png"
+html_logo = "logo/dlguidebook_logo_inverted-nobg.png"
+html_favicon = "logo/dlguidebook_logo_inverted-nobg.png"
 
 author = 'Nishant Baheti'
 

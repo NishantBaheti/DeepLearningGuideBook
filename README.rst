@@ -2,7 +2,7 @@
 The amateur's guide to explore Deep Learning
 =============================================
 
-.. image:: logo/dlguidebook_logo.png
+.. image:: logo/dlguidebook_logo_inverted-nobg.png
   :width: 400
   :alt: Alternative text
 
