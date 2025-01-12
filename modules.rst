@@ -6,6 +6,7 @@
    notebooks/logistic_regression_from_scratch
    notebooks/nn_from_scratch
    notebooks/transformers/explore
+   notebooks/autograd
 
 .. toctree::
    :maxdepth: 2
