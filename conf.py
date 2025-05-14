@@ -51,39 +51,34 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
     'sphinx.ext.todo',
+    "sphinxcontrib.cairosvgconverter"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 html_static_path = ['_static']
 
+# include_patterns = [ "*.rst" ]
+exclude_patterns = ['_build', '**.ipynb_checkpoints','docs', '.venv']
 
-# List of patterns, relative to source directory, that match files and
-# directories to ignore when looking for source files.
-# This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store','_build', '**.ipynb_checkpoints','docs']
-
-
+master_doc = 'index'
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "piccolo_theme"
-
-html_theme_options = {
-    # "navigation_depth": 2,  # Controls depth of navigation tree
-    # "collapse_navigation": True,  # Collapses sidebar sections by default
-    # "show_nav_level": 1,  # Shows navigation level
-    # "sidebar_hide_name": False,  # Show project name in the sidebar
-}
-
-# html_sidebars = {
-#     "**": ["sidebar-nav-bs", "sidebar-ethical-ads"],
-#     "root-doc-name" : []
-# }
+## read the docs 
 
 # import sphinx_pdj_theme
 # html_theme = 'sphinx_pdj_theme'
 # html_theme_path = [sphinx_pdj_theme.get_html_theme_path()]
-# html_theme = 'furo'
+
+# html_theme = "piccolo_theme"
+html_theme = "sphinx_book_theme"
+
+html_theme_options = {
+    "show_toc_level" : 4,
+    "show_navbar_depth" : 2,
+    "use_sidenotes" : True,
+    "announcement" : "Understand Any Topic From Me For Free -> <https://topmate.io/nishantbaheti/474284>"
+}
